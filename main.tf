@@ -1,6 +1,6 @@
-// ACE-IAC Core Aviatrix Infrastructure
+//ACE-IAC Core Aviatrix Infrastructure
 
-# Private Key creation
+#Private Key creation
 resource "tls_private_key" "avtx_key" {
   algorithm = "RSA"
   rsa_bits  = 2048
@@ -12,7 +12,7 @@ resource "aws_key_pair" "ace_key" {
   public_key = tls_private_key.avtx_key.public_key_openssh
 }
 
-# Create an Aviatrix Azure Account
+#Create an Aviatrix Azure Account
 resource "aviatrix_account" "azure_account" {
   account_name        = var.azure_account_name
   cloud_type          = 8
@@ -22,7 +22,7 @@ resource "aviatrix_account" "azure_account" {
   arm_application_key = var.azure_client_secret
 }
 
-# AWS Transit Modules
+#AWS Transit Modules
 module "aws_transit_1" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version             = "1.1.3"
@@ -35,21 +35,8 @@ module "aws_transit_1" {
   instance_size       = var.aws_transit_instance_size
   enable_segmentation = true
 }
-  /*
- module "aws_transit_2" {
-  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version             = "1.1.3"
-  cloud               = "AWS"
-  account             = var.aws_account_name
-  region              = var.aws_transit2_region
-  name                = var.aws_transit2_name
-  cidr                = var.aws_transit2_cidr
-  ha_gw               = var.ha_enabled
-  instance_size       = var.aws_transit_instance_size
-  enable_segmentation = false
-}
-*/
-# AWS Spoke Modules
+
+#AWS Spoke Modules
 module "aws_spoke_1" {
   source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version         = "1.1.2"
@@ -78,7 +65,7 @@ module "azure_spoke_2" {
   transit_gw      = module.aws_transit_1.transit_gateway.gw_name
 }
 
-# Multi-Cloud Segmentation
+#Multi-Cloud Segmentation
 resource "aviatrix_segmentation_security_domain" "BU1" {
   domain_name = "BU1"
   depends_on = [
@@ -91,9 +78,9 @@ resource "aviatrix_segmentation_security_domain" "BU2" {
     module.aws_transit_1
   ]
 }
-  
- resource "aviatrix_segmentation_security_domain_connection_policy" "BU1_BU2" {
+
+resource "aviatrix_segmentation_security_domain_connection_policy" "BU1_BU2" {
   domain_name_1 = aviatrix_segmentation_security_domain.BU1.domain_name
   domain_name_2 = aviatrix_segmentation_security_domain.BU2.domain_name
   depends_on    = [aviatrix_segmentation_security_domain.BU1, aviatrix_segmentation_security_domain.BU2]
-} 
+}
