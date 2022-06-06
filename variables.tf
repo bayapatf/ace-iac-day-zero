@@ -20,15 +20,15 @@ variable "aws_transit_instance_size" {
 }
 
 variable "aws_transit1_region" {
-  default = "us-east-2"
+  default = "eu-east-3"
 }
 
 variable "aws_transit1_name" {
-  default = "ace-iac-transit"
+  default = "aws-paris-transit"
 }
 
 variable "aws_transit1_cidr" {
-  default = "10.1.200.0/23"
+  default = "10.3.0.0/16"
 }
 
 variable "aws_transit2_region" {
@@ -105,5 +105,5 @@ variable "ace_ec2_key_name" {
 
 variable "ha_enabled" {
   type    = bool
-  default = false
+  default = true
 }
