@@ -31,6 +31,18 @@ variable "aws_transit1_cidr" {
   default = "10.1.200.0/23"
 }
 
+variable "aws_transit2_region" {
+  default = "us-east-2"
+}
+
+variable "aws_transit2_name" {
+  default = "ace-iac-transit-2"
+}
+
+variable "aws_transit2_cidr" {
+  default = "10.1.210.0/23"
+}
+
 variable "aws_spoke_instance_size" {
   default = "t3.micro"
 }
