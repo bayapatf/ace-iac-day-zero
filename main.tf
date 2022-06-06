@@ -35,6 +35,20 @@ module "aws_transit_1" {
   instance_size       = var.aws_transit_instance_size
   enable_segmentation = false
 }
+
+module "aws_transit_2" {
+  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version             = "1.1.3"
+  cloud               = "AWS"
+  account             = var.aws_account_name
+  region              = var.aws_transit2_region
+  name                = var.aws_transit2_name
+  cidr                = var.aws_transit2_cidr
+  ha_gw               = var.ha_enabled
+  instance_size       = var.aws_transit_instance_size
+  enable_segmentation = false
+}
+
 /*
 #AWS Spoke Modules
 module "aws_spoke_1" {

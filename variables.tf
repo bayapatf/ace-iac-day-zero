@@ -32,15 +32,15 @@ variable "aws_transit1_cidr" {
 }
 
 variable "aws_transit2_region" {
-  default = "us-east-2"
+  default = "ap-southeast-1"
 }
 
 variable "aws_transit2_name" {
-  default = "ace-iac-transit-2"
+  default = "aws-singapore-transit"
 }
 
 variable "aws_transit2_cidr" {
-  default = "10.1.210.0/23"
+  default = "10.4.0.0/16"
 }
 
 variable "aws_spoke_instance_size" {
