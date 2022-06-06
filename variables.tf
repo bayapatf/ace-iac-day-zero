@@ -20,7 +20,7 @@ variable "aws_transit_instance_size" {
 }
 
 variable "aws_transit1_region" {
-  default = "eu-east-3"
+  default = "eu-west-3"
 }
 
 variable "aws_transit1_name" {
