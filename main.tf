@@ -33,23 +33,9 @@ module "aws_transit_1" {
   cidr                = var.aws_transit1_cidr
   ha_gw               = var.ha_enabled
   instance_size       = var.aws_transit_instance_size
-  enable_segmentation = false
+  enable_segmentation = true
 }
 
-module "aws_transit_2" {
-  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version             = "1.1.3"
-  cloud               = "AWS"
-  account             = var.aws_account_name
-  region              = var.aws_transit2_region
-  name                = var.aws_transit2_name
-  cidr                = var.aws_transit2_cidr
-  ha_gw               = var.ha_enabled
-  instance_size       = var.aws_transit_instance_size
-  enable_segmentation = false
-}
-
-/*
 #AWS Spoke Modules
 module "aws_spoke_1" {
   source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
@@ -98,4 +84,3 @@ resource "aviatrix_segmentation_security_domain_connection_policy" "BU1_BU2" {
   domain_name_2 = aviatrix_segmentation_security_domain.BU2.domain_name
   depends_on    = [aviatrix_segmentation_security_domain.BU1, aviatrix_segmentation_security_domain.BU2]
 }
-*/
