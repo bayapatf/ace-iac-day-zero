@@ -33,7 +33,7 @@ module "aws_transit_1" {
   cidr                = var.aws_transit1_cidr
   ha_gw               = var.ha_enabled
   instance_size       = var.aws_transit_instance_size
-  enable_segmentation = true
+  enable_segmentation = false
 }
 /*
 #AWS Spoke Modules
