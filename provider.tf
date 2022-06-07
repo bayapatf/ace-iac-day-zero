@@ -19,8 +19,9 @@ provider "azurerm" {
 }
 
 provider "google" {
-
+  project = "aviatrix-controller-account"
 }
+
 /*
 provider "gcp" {
    gcloud_project_id = var.gcloud_project_id
