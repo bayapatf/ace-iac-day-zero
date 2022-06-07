@@ -84,14 +84,15 @@ resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
 }
 
 module "azure_transit_1" {
-  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version = "2.0.2"
-  cloud               = "Azure"
-  account             = aviatrix_account.azure_account.account_name
-  region              = var.azure_transit1_region
-  name                = var.azure_transit1_name
-  cidr                = var.azure_transit1_cidr
-  instance_size       = var.azure_spoke_instance_size
+  source        = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version       = "2.0.2"
+  cloud         = "Azure"
+  account       = aviatrix_account.azure_account.account_name
+  region        = var.azure_transit1_region
+  name          = var.azure_transit1_name
+  cidr          = var.azure_transit1_cidr
+  instance_size = var.azure_spoke_instance_size
+  ha_gw         = var.ha_enabled
 }
 
 /*
