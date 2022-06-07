@@ -125,6 +125,10 @@ variable "gcp_account_name" {
   default = "gcp"
 }
 
+variable "ec2_key_name" {
+  default = "ACE"
+}
+
 variable "azure_transit1_region" {
   default = "East US"
 }
