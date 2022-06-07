@@ -18,13 +18,12 @@ provider "azurerm" {
   tenant_id                  = var.azure_tenant_id
 }
 
-terraform {
-  required_providers {
-    google = {
-      source = "hashicorp/google"
-    }
-  }
+provider "google" {
+
+source = "hashicorp/google"
+
 }
+
 /*
 provider "gcp" {
    gcloud_project_id = var.gcloud_project_id
