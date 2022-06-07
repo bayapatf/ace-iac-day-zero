@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "aviatrix-controller-account",
+  "private_key_id": "9f11275e470eb1b95f0621ea7f6a99e8ed68dcc9",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCnkIJVj3OFoG9o\nMtxl/SoKkWZJ36eYMBslaptaMbBWZMUeEKXhVzijHQ+im4cCiaSk4yZD5l4CeoGt\nnWBQvU4Lz/+rPl8M5YFkZh/FcABw+xhEedWN0eRcxTdJLxrB+cc+IWcG/UAobCoO\n9yTozx+06EPpg9YaBnPpxZon6w+HLl3p2dTX9CyC1pMMpGIel4/l+Vqg1kRL0FQB\n5jTR7gJgtXElAxXCxBO1VUkUybCaSfYVkhyu48iOXZ7OryokmSG8DvSAZyISPA+I\n96IJ1cPpQHxbQakvG7XKoTd6ROlQdkt62IIpSpwsJ28xC0ucOSWWJ5LK+5NQ6fkZ\nKCkY7clZAgMBAAECggEACQkj3hVEN3p1R3smo2FJeRRqHaWv1ecSL6xWAEEZry7z\n6jEfoM0hQrp4c15Lo3lkpXeSQqsTerK8d247GV976+slcEiGu51MoutW30Cw5WbE\n4jxnpaQh2lbQKmQd30Pm2JTYh2n0obljczckiGFS5mB3+Qmg6/pZGcwMCgcE6Vci\nZtBtjSNKDmJ+qItmOyHxvuaGBTvTdcmIxCQ6ACS4hntUjGa3G/oymtB4raTRgJSI\nUkq13jy74UDEvAP31nJzrSatBKhQykoF0CA2Duz30w9ecpCkXnkemMfgkb+9OB0i\nzzGPeH27f7IraltZ+iL2ELguRBJE3fFDk0Mj6aZhAQKBgQDQzuSrTfmcTSfo24Pi\n9YnjNkliuk2Y/+53YwDSm5PKJV7SxqBJD5KqkL6547z1ZMvitfhAt5ODsUHnZK0z\nQGhJJVZdLIBoMPylOB8WGV3jTmMOiDe8IPuk0pNIzwvOqqfptoy9LfSNFRnsxs4k\nlc0pjcPC7WlOkagI9kpcwSxasQKBgQDNb1yUM2zuQmRERGQ+XHj3PMeETiILhg0j\n7J+v1x13mfRRBesqYtXzSJW6ETaEoiYRuFYwgaD1Lnugd24y/F1Qk6cxhs1EfBBS\ni4UVWLTRGdY4g5EHocsXD6Kf4dHhbm/at2ABGkDDNxhLd81IPUNCUmem/dcpo7ig\n2YGSC2IzKQKBgGtETZ5e8ULFNCJgWnFGV+58Hdj1AhX+K//ywSJwP8zRw9OdrAu8\nT0kGEKSoBJM/k6nEd2Kvq700WznGs18n0Cr7XlGBIfnkaHVrzjRpFZ1G0IZPneos\nO3nhnz4A9vzVGGtslwI8UGwFkgrb2lxbBEk7hXxmv/lXxC3OcEcUCXgRAoGBAJfr\nn6oVMZwsyttVPFCFsAseDmnAIhslgfgsF5dA3JDC8FMurk8FEjU8W0VjT07cXozC\nJjLu2eoW+uObDopz6EobNwxAJPJdUPDKLpuvot/zXGEkoo7jTj36mQflRoGQWvWC\noGOQV45F4xiEOvIOI/wa1n4+v+wSIAoLb29iLbepAoGBALtV5KYjDIni6XJwhIEa\n2Ji4hIovbzQsbvfu0HT13XT+8qYgKtix/+tsfhaXU2a+qddw2p6JedLGPi0D5ke/\nGbrUws+KveJ9pnvY9WR4RBlyScG1UCsmkQhtPd/nDEUgSDsh+6DFHGmT92/VeWlT\nnU1+/FQW3i9uQDHsjqxJ3fqx\n-----END PRIVATE KEY-----\n",
+  "client_email": "sa-account@aviatrix-controller-account.iam.gserviceaccount.com",
+  "client_id": "111468758634194969018",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sa-account%40aviatrix-controller-account.iam.gserviceaccount.com"
+}

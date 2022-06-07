@@ -22,6 +22,15 @@ resource "aviatrix_account" "azure_account" {
   arm_application_key = var.azure_client_secret
 }
 
+# Create an Aviatrix GCP Account
+resource "aviatrix_account" "gcp_account" {
+  account_name                        = "gcp"
+  cloud_type                          = 4
+  gcloud_project_id                   = var.gcloud_project_id
+  gcloud_project_credentials_filepath = "/home/bayapa_mulluri/github/ace-iac-day-zero/aviatrix-controller-account-9f11275e470e.json"
+}
+
+
 #AWS Transit Modules
 module "aws_transit_1" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
@@ -77,8 +86,6 @@ module "aws_spoke_2" {
 }
 
 
-
-
 module "azure_transit_1" {
   source        = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version       = "2.0.2"
@@ -121,6 +128,14 @@ resource "aviatrix_transit_gateway_peering" "aws_sydney_azure_virginia_transit_g
 }
 
 /*
+module "gcp_transit_1" {
+  source             = "terraform-aviatrix-modules/gcp-transit/aviatrix"
+  version            = "2.0.1"
+  account            = "GCP"
+  cidr               = "10.10.0.0/16"
+  region             = "us-east1"
+  ha_gw              = false
+}
 
 module "azure_transit" {
   source  = "terraform-aviatrix-modules/mc-transit/aviatrix"

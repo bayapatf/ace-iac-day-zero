@@ -93,6 +93,10 @@ variable "azure_client_secret" {
 variable "azure_tenant_id" {
 }
 
+variable "gcloud_project_id" {
+
+}
+
 variable "azure_transit1_region" {
   default = "East US"
 }
