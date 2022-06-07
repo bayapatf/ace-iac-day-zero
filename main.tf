@@ -83,19 +83,19 @@ resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
   transit_gateway_name2 = "aws-sydney-transit"
 }
 
-/*
 module "azure_transit_1" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version             = "1.1.2"
+  version = "2.0.2"
   cloud               = "Azure"
   account             = aviatrix_account.azure_account.account_name
   region              = var.azure_transit1_region
   name                = var.azure_transit1_name
   cidr                = var.azure_transit1_cidr
   instance_size       = var.azure_spoke_instance_size
-  ha_gw               = var.ha_enabled
 }
-*/
+
+/*
+
 module "azure_transit" {
   source  = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version = "2.0.2"
@@ -104,7 +104,7 @@ module "azure_transit" {
   cidr    = "10.1.0.0/23"
   account = aviatrix_account.azure_account.account_name
 }
-/*
+
 module "azure_spoke_2" {
   source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version         = "1.1.2"
