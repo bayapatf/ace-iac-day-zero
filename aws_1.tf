@@ -30,7 +30,7 @@ data "aws_ami" "ubuntu2" {
 }
 
 data "aws_ami" "amazon_linux" {
-  provider    = aws.west
+  #provider    = aws.west
   most_recent = true
   owners      = ["amazon"]
   filter {
@@ -48,7 +48,7 @@ data "aws_ami" "amazon_linux" {
 }
 
 data "aws_ami" "amazon_linux_west2" {
-  provider    = aws.west2
+  #provider    = aws.west2
   most_recent = true
   owners      = ["amazon"]
   filter {
