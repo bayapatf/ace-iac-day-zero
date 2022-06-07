@@ -2,7 +2,7 @@
 # Data source to get AMI details
 ##################################################################
 data "aws_ami" "ubuntu" {
-  provider    = aws.west
+  provider    = aws.london
   most_recent = true
   filter {
     name   = "name"
@@ -16,7 +16,7 @@ data "aws_ami" "ubuntu" {
 }
 
 data "aws_ami" "ubuntu2" {
-  provider    = aws.west2
+  provider    = aws.sydney
   most_recent = true
   filter {
     name   = "name"
@@ -30,7 +30,7 @@ data "aws_ami" "ubuntu2" {
 }
 
 data "aws_ami" "amazon_linux" {
-  provider    = aws.west
+  provider    = aws.london
   most_recent = true
   owners      = ["amazon"]
   filter {
@@ -48,7 +48,7 @@ data "aws_ami" "amazon_linux" {
 }
 
 data "aws_ami" "amazon_linux_west2" {
-  provider    = aws.west2
+  provider    = aws.sydeny
   most_recent = true
   owners      = ["amazon"]
   filter {
@@ -107,7 +107,7 @@ module "security_group_1" {
   ]
   egress_rules = ["all-all"]
   providers = {
-    aws = aws.west
+    aws = aws.london
   }
 }
 
@@ -121,7 +121,7 @@ module "security_group_2" {
   ingress_rules       = ["http-80-tcp", "ssh-tcp", "all-icmp"]
   egress_rules        = ["all-all"]
   providers = {
-    aws = aws.west
+    aws = aws.london
   }
 }
 
@@ -137,7 +137,7 @@ module "aws_spoke_ubu_1" {
   associate_public_ip_address = true
   user_data_base64            = base64encode(data.template_file.bu1_frontend_user_data.rendered)
   providers = {
-    aws = aws.west
+    aws = aws.london
   }
   tags = {
     name        = "${var.aws_spoke1_name}-bu1-frontend"
@@ -147,7 +147,7 @@ module "aws_spoke_ubu_1" {
 }
 
 data "aws_network_interface" "aws-spoke1-ubu-ni" {
-  provider = aws.west
+  provider = aws.london
   id       = module.aws_spoke_ubu_1.primary_network_interface_id[0]
 }
 
@@ -163,7 +163,7 @@ module "aws_spoke_ubu_2" {
   associate_public_ip_address = true
   user_data_base64            = base64encode(data.template_file.bu2_mobile_app_user_data.rendered)
   providers = {
-    aws = aws.west
+    aws = aws.london
   }
   tags = {
     name        = "${var.aws_spoke2_name}-bu2-mobile-app"
@@ -173,6 +173,6 @@ module "aws_spoke_ubu_2" {
 }
 
 data "aws_network_interface" "aws-spoke2-ubu-ni" {
-  provider = aws.west
+  provider = aws.london
   id       = module.aws_spoke_ubu_2.primary_network_interface_id[0]
 }

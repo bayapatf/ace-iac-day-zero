@@ -8,6 +8,15 @@ provider "aws" {
   alias  = "ohio"
   region = var.aws_spoke1_region
 }
+provider "aws" {
+  alias  = "london"
+  region = "eu-west-2"
+}
+
+provider "aws" {
+  alias  = "sydney"
+  region = "ap-southeast-2"
+}
 
 provider "azurerm" {
   features {}
