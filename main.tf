@@ -93,7 +93,6 @@ module "azure_transit_1" {
   cidr                = var.azure_transit1_cidr
   instance_size       = var.azure_spoke_instance_size
   ha_gw               = var.ha_enabled
-  enable_segmentation = false
 }
 
 /*
