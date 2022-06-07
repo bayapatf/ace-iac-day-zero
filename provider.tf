@@ -18,9 +18,9 @@ provider "azurerm" {
   tenant_id                  = var.azure_tenant_id
 }
 
-provider "gcp" {
- }
+provider "google" {
 
+}
 /*
 provider "gcp" {
    gcloud_project_id = var.gcloud_project_id
