@@ -22,6 +22,7 @@ resource "aviatrix_account" "azure_account" {
   arm_application_key = var.azure_client_secret
 }
 
+/*
 # Create an Aviatrix GCP Account
 resource "aviatrix_account" "gcp_account" {
   account_name                        = "gcp"
@@ -29,7 +30,7 @@ resource "aviatrix_account" "gcp_account" {
   gcloud_project_id                   = "aviatrix-controller-account"
   gcloud_project_credentials_filepath = "/home/bayapa_mulluri/github/ace-iac-day-zero/aviatrix-controller-account-9f11275e470e.json"
 }
-
+*/
 
 #AWS Transit Modules
 module "aws_transit_1" {

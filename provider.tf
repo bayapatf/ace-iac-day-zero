@@ -18,7 +18,9 @@ provider "azurerm" {
   tenant_id                  = var.azure_tenant_id
 }
 
+/*
 provider "gcp" {
    gcloud_project_id = var.gcloud_project_id
    #gcloud_project_credentials_filepath = "/home/bayapa_mulluri/github/ace-iac-day-zero/aviatrix-controller-account-9f11275e470e.json"
 }
+*/
