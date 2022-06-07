@@ -139,7 +139,7 @@ module "azure_spoke_1" {
   ha_gw         = var.ha_enabled
   transit_gw    = module.azure_transit_1.transit_gateway.gw_name
 }
-
+/*
 # Create an Aviatrix Transit Gateway Peering
 resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
   transit_gateway_name1 = module.aws_transit_1.transit_gateway.gw_name
@@ -155,7 +155,20 @@ resource "aviatrix_transit_gateway_peering" "aws_sydney_azure_virginia_transit_g
   transit_gateway_name1 = module.aws_transit_2.transit_gateway.gw_name
   transit_gateway_name2 = module.azure_transit_1.transit_gateway.gw_name
 }
+*/
 
+# Multi region Multi-Cloud transit peering
+module "transit-peering" {
+  source  = "terraform-aviatrix-modules/mc-transit-peering/aviatrix"
+  version = "1.0.5"
+  transit_gateways = [
+    module.aws_transit_1.transit_gateway.gw_name,
+    module.aws_transit_2.transit_gateway.gw_name,
+    module.azure_transit_1.transit_gateway.gw_name,
+    module.gcp_transit_1.transit_gateway.gw_name,
+  ]
+
+}
 
 module "gcp_transit_1" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
@@ -171,15 +184,15 @@ module "gcp_transit_1" {
 
 # Aviatrix GCP Spoke 1
 module "gcp_spoke_1" {
-  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version         = "1.1.2"
-  cloud           = "GCP"
-  account         = var.gcp_account_name
-  region          = var.gcp_spoke1_region
-  name            = var.gcp_spoke1_name
-  cidr            = var.gcp_spoke1_cidr
-  ha_gw           = var.ha_enabled
-  transit_gw      = module.gcp_transit_1.transit_gateway.gw_name
+  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version    = "1.1.2"
+  cloud      = "GCP"
+  account    = var.gcp_account_name
+  region     = var.gcp_spoke1_region
+  name       = var.gcp_spoke1_name
+  cidr       = var.gcp_spoke1_cidr
+  ha_gw      = var.ha_enabled
+  transit_gw = module.gcp_transit_1.transit_gateway.gw_name
 }
 
 
