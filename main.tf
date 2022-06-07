@@ -77,11 +77,7 @@ module "aws_spoke_2" {
 }
 
 
-# Create an Aviatrix Transit Gateway Peering
-resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
-  transit_gateway_name1 = "aws-london-transit"
-  transit_gateway_name2 = "aws-sydney-transit"
-}
+
 
 module "azure_transit_1" {
   source        = "terraform-aviatrix-modules/mc-transit/aviatrix"
@@ -106,6 +102,22 @@ module "azure_spoke_1" {
   instance_size = var.azure_spoke_instance_size
   ha_gw         = var.ha_enabled
   transit_gw    = module.azure_transit_1.transit_gateway.gw_name
+}
+
+# Create an Aviatrix Transit Gateway Peering
+resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
+  transit_gateway_name1 = "aws-london-transit"
+  transit_gateway_name2 = "aws-sydney-transit"
+}
+
+resource "aviatrix_transit_gateway_peering" "aws_london_azure_virginia_transit_gateway_peering" {
+  transit_gateway_name1 = module.aws_transit_1.transit_gateway.gw_name
+  transit_gateway_name2 = module.azure_transit_1.transit_gateway.gw_name
+}
+
+resource "aviatrix_transit_gateway_peering" "aws_sydney_azure_virginia_transit_gateway_peering" {
+  transit_gateway_name1 = module.aws_transit_2.transit_gateway.gw_name
+  transit_gateway_name2 = module.azure_transit_1.transit_gateway.gw_name
 }
 
 /*
