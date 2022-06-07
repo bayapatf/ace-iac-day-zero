@@ -94,6 +94,7 @@ variable "azure_tenant_id" {
 }
 
 variable "gcloud_project_id" {
+    default = "aviatrix-controller-account"
 }
 
 variable "azure_transit1_region" {
