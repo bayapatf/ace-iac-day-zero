@@ -18,7 +18,7 @@ provider "azurerm" {
   tenant_id                  = var.azure_tenant_id
 }
 
-provider "google" {
+provider {
       source  = "hashicorp/google"
       version = ">= 3.50"
     }
