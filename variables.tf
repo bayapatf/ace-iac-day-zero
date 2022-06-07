@@ -16,23 +16,23 @@ variable "aws_account_name" {
 }
 
 variable "aws_transit_instance_size" {
-  default = "t3.micro"
+  default = "t2.micro"
 }
 
 variable "aws_transit1_region" {
-  default = "us-east-2"
+  default = "eu-west-2"
 }
 
 variable "aws_transit1_name" {
-  default = "ace-iac-transit"
+  default = "aws-london-transit"
 }
 
 variable "aws_transit1_cidr" {
-  default = "10.1.200.0/23"
+  default = "10.1.0.0/16"
 }
 
 variable "aws_spoke_instance_size" {
-  default = "t3.micro"
+  default = "t2.micro"
 }
 
 variable "aws_spoke1_region" {
