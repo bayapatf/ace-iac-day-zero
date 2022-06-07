@@ -93,6 +93,18 @@ variable "azure_client_secret" {
 variable "azure_tenant_id" {
 }
 
+variable "azure_transit1_region" {
+  default = "East US"
+}
+
+variable "azure_transit1_name" {
+  default = "azure-virginia-transit"
+}
+
+variable "azure_transit1_cidr" {
+  default = "10.70.0.0/16"
+}
+
 variable "azure_spoke_instance_size" {
   default = "Standard_B1ms"
 }

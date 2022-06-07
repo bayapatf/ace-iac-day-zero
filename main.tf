@@ -51,36 +51,49 @@ module "aws_transit_2" {
 
 #AWS Spoke Modules
 module "aws_spoke_1" {
-  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version         = "1.1.2"
-  cloud           = "AWS"
-  account         = var.aws_account_name
-  region          = var.aws_spoke1_region
-  name            = var.aws_spoke1_name
-  cidr            = var.aws_spoke1_cidr
-  instance_size   = var.aws_spoke_instance_size
-  ha_gw           = var.ha_enabled
-  transit_gw      = module.aws_transit_1.transit_gateway.gw_name
+  source        = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version       = "1.1.2"
+  cloud         = "AWS"
+  account       = var.aws_account_name
+  region        = var.aws_spoke1_region
+  name          = var.aws_spoke1_name
+  cidr          = var.aws_spoke1_cidr
+  instance_size = var.aws_spoke_instance_size
+  ha_gw         = var.ha_enabled
+  transit_gw    = module.aws_transit_1.transit_gateway.gw_name
 }
 
 module "aws_spoke_2" {
-  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version         = "1.1.2"
-  cloud           = "AWS"
-  account         = var.aws_account_name
-  region          = var.aws_spoke2_region
-  name            = var.aws_spoke2_name
-  cidr            = var.aws_spoke2_cidr
-  instance_size   = var.aws_spoke_instance_size
-  ha_gw           = var.ha_enabled
-  transit_gw      = module.aws_transit_2.transit_gateway.gw_name
+  source        = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version       = "1.1.2"
+  cloud         = "AWS"
+  account       = var.aws_account_name
+  region        = var.aws_spoke2_region
+  name          = var.aws_spoke2_name
+  cidr          = var.aws_spoke2_cidr
+  instance_size = var.aws_spoke_instance_size
+  ha_gw         = var.ha_enabled
+  transit_gw    = module.aws_transit_2.transit_gateway.gw_name
 }
 
 
 # Create an Aviatrix Transit Gateway Peering
 resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
-  transit_gateway_name1    = "aws-london-transit"
-  transit_gateway_name2    = "aws-sydney-transit"
+  transit_gateway_name1 = "aws-london-transit"
+  transit_gateway_name2 = "aws-sydney-transit"
+}
+
+module "azure_transit_1" {
+  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version             = "1.1.2"
+  cloud               = "Azure"
+  account             = aviatrix_account.azure_account.account_name
+  region              = var.azure_transit1_region
+  name                = var.azure_transit1_name
+  cidr                = var.azure_transit1_cidr
+  instance_size       = var.azure_spoke_instance_size
+  ha_gw               = var.ha_enabled
+  enable_segmentation = false
 }
 
 /*
