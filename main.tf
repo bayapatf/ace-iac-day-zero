@@ -106,8 +106,8 @@ module "azure_spoke_1" {
 
 # Create an Aviatrix Transit Gateway Peering
 resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
-  transit_gateway_name1 = "aws-london-transit"
-  transit_gateway_name2 = "aws-sydney-transit"
+  transit_gateway_name1 = module.aws_transit_1.transit_gateway.gw_name
+  transit_gateway_name2 = module.aws_transit_2.transit_gateway.gw_name
 }
 
 resource "aviatrix_transit_gateway_peering" "aws_london_azure_virginia_transit_gateway_peering" {
