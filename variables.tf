@@ -31,6 +31,20 @@ variable "aws_transit1_cidr" {
   default = "10.1.0.0/16"
 }
 
+
+variable "aws_transit2_region" {
+  default = "ap-southeast-2"
+}
+
+variable "aws_transit2_name" {
+  default = "aws-sydney-transit"
+}
+
+variable "aws_transit2_cidr" {
+  default = "10.3.0.0/16"
+}
+
+
 variable "aws_spoke_instance_size" {
   default = "t2.micro"
 }
