@@ -121,7 +121,7 @@ module "security_group_2" {
   ingress_rules       = ["http-80-tcp", "ssh-tcp", "all-icmp"]
   egress_rules        = ["all-all"]
   providers = {
-    aws = aws.london
+    aws = aws.sydney
   }
 }
 
@@ -163,7 +163,7 @@ module "aws_spoke_ubu_2" {
   associate_public_ip_address = true
   user_data_base64            = base64encode(data.template_file.bu2_mobile_app_user_data.rendered)
   providers = {
-    aws = aws.london
+    aws = aws.sydney
   }
   tags = {
     name        = "${var.aws_spoke2_name}-bu2-mobile-app"
@@ -173,6 +173,6 @@ module "aws_spoke_ubu_2" {
 }
 
 data "aws_network_interface" "aws-spoke2-ubu-ni" {
-  provider = aws.london
+  provider = aws.sydney
   id       = module.aws_spoke_ubu_2.primary_network_interface_id[0]
 }
