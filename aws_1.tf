@@ -2,7 +2,7 @@
 # Data source to get AMI details
 ##################################################################
 data "aws_ami" "ubuntu" {
-  #provider    = aws.west
+  provider    = aws.west
   most_recent = true
   filter {
     name   = "name"
@@ -16,7 +16,7 @@ data "aws_ami" "ubuntu" {
 }
 
 data "aws_ami" "ubuntu2" {
-  #provider    = aws.west2
+  provider    = aws.west2
   most_recent = true
   filter {
     name   = "name"
@@ -30,7 +30,7 @@ data "aws_ami" "ubuntu2" {
 }
 
 data "aws_ami" "amazon_linux" {
-  #provider    = aws.west
+  provider    = aws.west
   most_recent = true
   owners      = ["amazon"]
   filter {
@@ -48,7 +48,7 @@ data "aws_ami" "amazon_linux" {
 }
 
 data "aws_ami" "amazon_linux_west2" {
-  #provider    = aws.west2
+  provider    = aws.west2
   most_recent = true
   owners      = ["amazon"]
   filter {
