@@ -94,7 +94,19 @@ variable "azure_tenant_id" {
 }
 
 variable "gcloud_project_id" {
-    default = "aviatrix-controller-account"
+  default = "aviatrix-controller-account"
+}
+
+variable "gcp_transit1_region" {
+  default = "asia-south1"
+}
+
+variable "gcp_transit1_name" {
+  default = "gcp-mumbai-transit"
+}
+
+variable "gcp_transit1_cidr" {
+  default = "10.90.0.0/16"
 }
 
 variable "azure_transit1_region" {

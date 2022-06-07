@@ -30,6 +30,34 @@ resource "aviatrix_account" "gcp_account" {
   gcloud_project_id                   = "aviatrix-controller-account"
   gcloud_project_credentials_filepath = "/home/bayapa_mulluri/github/ace-iac-day-zero/aviatrix-controller-account-9f11275e470e.json"
 }
+
+
+resource "aviatrix_account" "account_1" {
+    account_name = "aws-account"
+    cloud_type = 1
+    aws_account_number = "256271308280"
+    aws_iam = true
+    aws_role_app = "arn:aws:iam::256271308280:role/aviatrix-role-app"
+    aws_role_ec2 = "arn:aws:iam::256271308280:role/aviatrix-role-ec2"
+    aws_access_key = ""
+    aws_secret_key = ""
+}
+
+resource "aviatrix_account" "account_2" {
+    account_name = "azure-account"
+    cloud_type = 8
+    arm_subscription_id = "3c40bbc6-6ab7-4225-83e7-74c74289b3bd"
+    arm_directory_id = ""
+    arm_application_id = ""
+    arm_application_key = ""
+}
+
+resource "aviatrix_account" "account_3" {
+    account_name = "gcp"
+    cloud_type = 4
+    gcloud_project_id = "aviatrix-controller-account"
+    gcloud_project_credentials_filepath = ""
+}
 */
 
 #AWS Transit Modules
@@ -127,6 +155,18 @@ resource "aviatrix_transit_gateway_peering" "aws_sydney_azure_virginia_transit_g
   transit_gateway_name1 = module.aws_transit_2.transit_gateway.gw_name
   transit_gateway_name2 = module.azure_transit_1.transit_gateway.gw_name
 }
+
+
+module "gcp_transit_1" {
+  source  = "terraform-aviatrix-modules/gcp-transit/aviatrix"
+  version = "2.0.1"
+  account = "gcp"
+  cidr    = var.gcp_transit1_cidr
+  region  = var.gcp_transit1_region
+  name    = var.gcp_transit1_name
+  ha_gw   = false
+}
+
 
 /*
 module "gcp_transit_1" {
