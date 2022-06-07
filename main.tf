@@ -22,6 +22,7 @@ resource "aviatrix_account" "azure_account" {
   arm_application_key = var.azure_client_secret
 }
 
+/*
 #AWS Transit Modules
 module "aws_transit_1" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
@@ -140,6 +141,21 @@ module "transit-peering" {
   ]
 
 }
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
