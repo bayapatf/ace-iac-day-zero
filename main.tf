@@ -83,6 +83,7 @@ resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
   transit_gateway_name2 = "aws-sydney-transit"
 }
 
+/*
 module "azure_transit_1" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version             = "1.1.2"
@@ -95,7 +96,6 @@ module "azure_transit_1" {
   ha_gw               = var.ha_enabled
 }
 
-/*
 module "azure_spoke_2" {
   source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version         = "1.1.2"
