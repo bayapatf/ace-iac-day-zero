@@ -15,9 +15,9 @@ EOF
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "${var.azure_spoke2_name}-nic1"
+  name                = "${var.azure_spoke1_name}-nic1"
   resource_group_name = module.azure_spoke_2.vpc.resource_group
-  location            = var.azure_spoke2_region
+  location            = var.azure_spoke1_region
   ip_configuration {
     name                          = module.azure_spoke_2.vpc.private_subnets[0].name
     subnet_id                     = module.azure_spoke_2.vpc.private_subnets[0].subnet_id
@@ -28,7 +28,7 @@ resource "azurerm_network_interface" "main" {
 resource "azurerm_network_security_group" "spoke2-app" {
   name                = "spoke2-app"
   resource_group_name = module.azure_spoke_2.vpc.resource_group
-  location            = var.azure_spoke2_region
+  location            = var.azure_spoke1_region
 }
 
 resource "azurerm_network_security_rule" "http" {
@@ -78,10 +78,10 @@ resource "azurerm_network_interface_security_group_association" "main" {
   network_security_group_id = azurerm_network_security_group.spoke2-app.id
 }
 
-resource "azurerm_linux_virtual_machine" "azure_spoke2_vm" {
-  name                            = "${var.azure_spoke2_name}-app"
+resource "azurerm_linux_virtual_machine" "azure_spoke1_vm" {
+  name                            = "${var.azure_spoke1_name}-app"
   resource_group_name             = module.azure_spoke_2.vpc.resource_group
-  location                        = var.azure_spoke2_region
+  location                        = var.azure_spoke1_region
   size                            = var.azure_test_instance_size
   admin_username                  = "ubuntu"
   admin_password                  = var.ace_password
@@ -107,6 +107,6 @@ resource "azurerm_linux_virtual_machine" "azure_spoke2_vm" {
   custom_data = base64encode(local.bu2_app_user_data)
 }
 
-output "azure_spoke2_app_private_ip" {
-  value = azurerm_linux_virtual_machine.azure_spoke2_vm.private_ip_address
+output "azure_spoke1_app_private_ip" {
+  value = azurerm_linux_virtual_machine.azure_spoke1_vm.private_ip_address
 }
