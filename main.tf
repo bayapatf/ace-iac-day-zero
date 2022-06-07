@@ -26,7 +26,7 @@ resource "aviatrix_account" "azure_account" {
 resource "aviatrix_account" "gcp_account" {
   account_name                        = "gcp"
   cloud_type                          = 4
-  gcloud_project_id                   = var.gcloud_project_id
+  gcloud_project_id                   = "aviatrix-controller-account"
   gcloud_project_credentials_filepath = "/home/bayapa_mulluri/github/ace-iac-day-zero/aviatrix-controller-account-9f11275e470e.json"
 }
 
