@@ -116,7 +116,7 @@ module "gcp_transit_1" {
   enable_segmentation = false
   ha_gw               = var.ha_enabled
 }
-/*
+
 # Aviatrix GCP Spoke
 
 module "gcp_spoke_1" {
@@ -143,7 +143,7 @@ module "transit-peering" {
   ]
 
 }
-*/
+
 
 
 
