@@ -18,7 +18,7 @@ provider "azurerm" {
   tenant_id                  = var.azure_tenant_id
 }
 
-provider "google" {
+provider "gcloud" {
   project = "aviatrix-controller-account"
 }
 

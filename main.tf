@@ -160,6 +160,7 @@ resource "aviatrix_transit_gateway_peering" "aws_sydney_azure_virginia_transit_g
 module "gcp_transit_1" {
   source  = "terraform-aviatrix-modules/gcp-transit/aviatrix"
   version = "2.0.1"
+  cloud   = "GCP"
   account = "gcp"
   cidr    = var.gcp_transit1_cidr
   region  = var.gcp_transit1_region
