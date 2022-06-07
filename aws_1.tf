@@ -48,7 +48,7 @@ data "aws_ami" "amazon_linux" {
 }
 
 data "aws_ami" "amazon_linux_west2" {
-  provider    = aws.sydeny
+  provider    = aws.sydney
   most_recent = true
   owners      = ["amazon"]
   filter {
