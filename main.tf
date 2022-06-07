@@ -76,6 +76,13 @@ module "aws_spoke_2" {
   transit_gw      = module.aws_transit_2.transit_gateway.gw_name
 }
 
+
+# Create an Aviatrix Transit Gateway Peering
+resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
+  transit_gateway_name1                       = module.aws_transit_1.transit_gateway.gw_name
+  transit_gateway_name2                       = module.aws_transit_2.transit_gateway.gw_name
+}
+
 /*
 module "azure_spoke_2" {
   source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
