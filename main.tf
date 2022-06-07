@@ -158,14 +158,15 @@ resource "aviatrix_transit_gateway_peering" "aws_sydney_azure_virginia_transit_g
 
 
 module "gcp_transit_1" {
-  source  = "terraform-aviatrix-modules/gcp-transit/aviatrix"
-  version = "2.0.1"
-  cloud   = "GCP"
-  account = "gcp"
-  cidr    = var.gcp_transit1_cidr
-  region  = var.gcp_transit1_region
-  name    = var.gcp_transit1_name
-  ha_gw   = false
+  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version             = "1.1.3"
+  cloud               = "GCP"
+  account             = var.gcp_account_name
+  region              = var.gcp_transit1_region
+  name                = var.gcp_transit1_name
+  cidr                = var.gcp_transit1_cidr
+  enable_segmentation = false
+  ha_gw               = var.ha_enabled
 }
 
 

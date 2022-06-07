@@ -19,8 +19,10 @@ provider "azurerm" {
 }
 
 provider "google" {
-
+  project = "aviatrix-controller-account"
+  region  = "asia-south1"
 }
+
 
 /*
 provider "gcp" {

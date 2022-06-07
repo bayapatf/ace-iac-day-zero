@@ -109,6 +109,10 @@ variable "gcp_transit1_cidr" {
   default = "10.90.0.0/16"
 }
 
+variable "gcp_account_name" {
+  default = "gcp"
+}
+
 variable "azure_transit1_region" {
   default = "East US"
 }
