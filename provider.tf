@@ -20,8 +20,6 @@ provider "azurerm" {
 
 provider "google" {
 
-source = "hashicorp/google"
-
 }
 
 /*
