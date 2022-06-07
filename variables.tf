@@ -102,7 +102,7 @@ variable "gcp_transit1_region" {
 }
 
 variable "gcp_transit1_name" {
-  default = "gcp-mumbai-transit"
+  default = "gcp-mumbai-transit-gw"
 }
 
 variable "gcp_transit1_cidr" {
@@ -114,7 +114,7 @@ variable "gcp_spoke1_region" {
 }
 
 variable "gcp_spoke1_name" {
-  default = "gcp-mumbai-spoke"
+  default = "gcp-mumbai-spoke-gw"
 }
 
 variable "gcp_spoke1_cidr" {
