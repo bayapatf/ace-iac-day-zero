@@ -103,7 +103,7 @@ module "azure_spoke_1" {
   ha_gw         = var.ha_enabled
   transit_gw    = module.azure_transit_1.transit_gateway.gw_name
 }
-/*
+
 # Aviatrix GCP Transit
 module "gcp_transit_1" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
@@ -116,7 +116,7 @@ module "gcp_transit_1" {
   enable_segmentation = false
   ha_gw               = var.ha_enabled
 }
-
+/*
 # Aviatrix GCP Spoke
 
 module "gcp_spoke_1" {
