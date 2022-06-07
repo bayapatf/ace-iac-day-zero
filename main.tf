@@ -22,44 +22,6 @@ resource "aviatrix_account" "azure_account" {
   arm_application_key = var.azure_client_secret
 }
 
-/*
-# Create an Aviatrix GCP Account
-resource "aviatrix_account" "gcp_account" {
-  account_name                        = "gcp"
-  cloud_type                          = 4
-  gcloud_project_id                   = "aviatrix-controller-account"
-  gcloud_project_credentials_filepath = "/home/bayapa_mulluri/github/ace-iac-day-zero/aviatrix-controller-account-9f11275e470e.json"
-}
-
-
-resource "aviatrix_account" "account_1" {
-    account_name = "aws-account"
-    cloud_type = 1
-    aws_account_number = "256271308280"
-    aws_iam = true
-    aws_role_app = "arn:aws:iam::256271308280:role/aviatrix-role-app"
-    aws_role_ec2 = "arn:aws:iam::256271308280:role/aviatrix-role-ec2"
-    aws_access_key = ""
-    aws_secret_key = ""
-}
-
-resource "aviatrix_account" "account_2" {
-    account_name = "azure-account"
-    cloud_type = 8
-    arm_subscription_id = "3c40bbc6-6ab7-4225-83e7-74c74289b3bd"
-    arm_directory_id = ""
-    arm_application_id = ""
-    arm_application_key = ""
-}
-
-resource "aviatrix_account" "account_3" {
-    account_name = "gcp"
-    cloud_type = 4
-    gcloud_project_id = "aviatrix-controller-account"
-    gcloud_project_credentials_filepath = ""
-}
-*/
-
 #AWS Transit Modules
 module "aws_transit_1" {
   source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
@@ -114,7 +76,7 @@ module "aws_spoke_2" {
   transit_gw    = module.aws_transit_2.transit_gateway.gw_name
 }
 
-
+#Azure Transit Modules
 module "azure_transit_1" {
   source        = "terraform-aviatrix-modules/mc-transit/aviatrix"
   version       = "2.0.2"
@@ -127,6 +89,7 @@ module "azure_transit_1" {
   ha_gw         = var.ha_enabled
 }
 
+#Azure Spoke Modules
 module "azure_spoke_1" {
   source        = "terraform-aviatrix-modules/mc-spoke/aviatrix"
   version       = "1.1.2"
@@ -139,6 +102,47 @@ module "azure_spoke_1" {
   ha_gw         = var.ha_enabled
   transit_gw    = module.azure_transit_1.transit_gateway.gw_name
 }
+# Aviatrix GCP Transit
+module "gcp_transit_1" {
+  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
+  version             = "1.1.3"
+  cloud               = "GCP"
+  account             = var.gcp_account_name
+  region              = var.gcp_transit1_region
+  name                = var.gcp_transit1_name
+  cidr                = var.gcp_transit1_cidr
+  enable_segmentation = false
+  ha_gw               = var.ha_enabled
+}
+
+# Aviatrix GCP Spoke
+module "gcp_spoke_1" {
+  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version    = "1.1.2"
+  cloud      = "GCP"
+  account    = var.gcp_account_name
+  region     = var.gcp_spoke1_region
+  name       = var.gcp_spoke1_name
+  cidr       = var.gcp_spoke1_cidr
+  ha_gw      = var.ha_enabled
+  transit_gw = module.gcp_transit_1.transit_gateway.gw_name
+}
+
+# Multi region Multi-Cloud transit peering
+module "transit-peering" {
+  source  = "terraform-aviatrix-modules/mc-transit-peering/aviatrix"
+  version = "1.0.5"
+  transit_gateways = [
+    module.aws_transit_1.transit_gateway.gw_name,
+    module.aws_transit_2.transit_gateway.gw_name,
+    module.azure_transit_1.transit_gateway.gw_name,
+    module.gcp_transit_1.transit_gateway.gw_name,
+  ]
+
+}
+
+
+
 /*
 # Create an Aviatrix Transit Gateway Peering
 resource "aviatrix_transit_gateway_peering" "aws_transit_gateway_peering" {
@@ -155,48 +159,44 @@ resource "aviatrix_transit_gateway_peering" "aws_sydney_azure_virginia_transit_g
   transit_gateway_name1 = module.aws_transit_2.transit_gateway.gw_name
   transit_gateway_name2 = module.azure_transit_1.transit_gateway.gw_name
 }
-*/
-
-# Multi region Multi-Cloud transit peering
-module "transit-peering" {
-  source  = "terraform-aviatrix-modules/mc-transit-peering/aviatrix"
-  version = "1.0.5"
-  transit_gateways = [
-    module.aws_transit_1.transit_gateway.gw_name,
-    module.aws_transit_2.transit_gateway.gw_name,
-    module.azure_transit_1.transit_gateway.gw_name,
-    module.gcp_transit_1.transit_gateway.gw_name,
-  ]
-
-}
-
-module "gcp_transit_1" {
-  source              = "terraform-aviatrix-modules/mc-transit/aviatrix"
-  version             = "1.1.3"
-  cloud               = "GCP"
-  account             = var.gcp_account_name
-  region              = var.gcp_transit1_region
-  name                = var.gcp_transit1_name
-  cidr                = var.gcp_transit1_cidr
-  enable_segmentation = false
-  ha_gw               = var.ha_enabled
-}
-
-# Aviatrix GCP Spoke 1
-module "gcp_spoke_1" {
-  source     = "terraform-aviatrix-modules/mc-spoke/aviatrix"
-  version    = "1.1.2"
-  cloud      = "GCP"
-  account    = var.gcp_account_name
-  region     = var.gcp_spoke1_region
-  name       = var.gcp_spoke1_name
-  cidr       = var.gcp_spoke1_cidr
-  ha_gw      = var.ha_enabled
-  transit_gw = module.gcp_transit_1.transit_gateway.gw_name
-}
-
-
 /*
+# Create an Aviatrix GCP Account
+resource "aviatrix_account" "gcp_account" {
+  account_name                        = "gcp"
+  cloud_type                          = 4
+  gcloud_project_id                   = "aviatrix-controller-account"
+  gcloud_project_credentials_filepath = "/home/bayapa_mulluri/github/ace-iac-day-zero/aviatrix-controller-account-9f11275e470e.json"
+}
+
+
+resource "aviatrix_account" "account_1" {
+    account_name = "aws-account"
+    cloud_type = 1
+    aws_account_number = "256271308280"
+    aws_iam = true
+    aws_role_app = "arn:aws:iam::256271308280:role/aviatrix-role-app"
+    aws_role_ec2 = "arn:aws:iam::256271308280:role/aviatrix-role-ec2"
+    aws_access_key = ""
+    aws_secret_key = ""
+}
+
+resource "aviatrix_account" "account_2" {
+    account_name = "azure-account"
+    cloud_type = 8
+    arm_subscription_id = "3c40bbc6-6ab7-4225-83e7-74c74289b3bd"
+    arm_directory_id = ""
+    arm_application_id = ""
+    arm_application_key = ""
+}
+
+resource "aviatrix_account" "account_3" {
+    account_name = "gcp"
+    cloud_type = 4
+    gcloud_project_id = "aviatrix-controller-account"
+    gcloud_project_credentials_filepath = ""
+}
+
+
 module "gcp_transit_1" {
   source             = "terraform-aviatrix-modules/gcp-transit/aviatrix"
   version            = "2.0.1"
