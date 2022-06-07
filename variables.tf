@@ -109,16 +109,16 @@ variable "azure_spoke_instance_size" {
   default = "Standard_B1ms"
 }
 
-variable "azure_spoke2_region" {
-  default = "Canada Central"
+variable "azure_spoke1_region" {
+  default = "East US"
 }
 
-variable "azure_spoke2_name" {
-  default = "ace-iac-spoke2"
+variable "azure_spoke1_name" {
+  default = "azure-virginia-spoke"
 }
 
-variable "azure_spoke2_cidr" {
-  default = "10.1.212.0/24"
+variable "azure_spoke1_cidr" {
+  default = "10.80.0.0/16"
 }
 
 variable "azure_test_instance_size" {

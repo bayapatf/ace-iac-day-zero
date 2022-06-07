@@ -95,6 +95,19 @@ module "azure_transit_1" {
   ha_gw         = var.ha_enabled
 }
 
+module "azure_spoke_1" {
+  source        = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version       = "1.1.2"
+  cloud         = "Azure"
+  account       = aviatrix_account.azure_account.account_name
+  region        = var.azure_spoke1_region
+  name          = var.azure_spoke1_name
+  cidr          = var.azure_spoke1_cidr
+  instance_size = var.azure_spoke_instance_size
+  ha_gw         = var.ha_enabled
+  transit_gw    = module.azure_transit_1.transit_gateway.gw_name
+}
+
 /*
 
 module "azure_transit" {
