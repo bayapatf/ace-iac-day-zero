@@ -169,6 +169,19 @@ module "gcp_transit_1" {
   ha_gw               = var.ha_enabled
 }
 
+# Aviatrix GCP Spoke 1
+module "gcp_spoke_1" {
+  source          = "terraform-aviatrix-modules/mc-spoke/aviatrix"
+  version         = "1.1.2"
+  cloud           = "GCP"
+  account         = var.gcp_account_name
+  region          = var.gcp_spoke1_region
+  name            = var.gcp_spoke1_name
+  cidr            = var.gcp_spoke1_cidr
+  ha_gw           = var.ha_enabled
+  transit_gw      = module.gcp_transit_1.transit_gateway.gw_name
+}
+
 
 /*
 module "gcp_transit_1" {

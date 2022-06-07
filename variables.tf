@@ -109,6 +109,18 @@ variable "gcp_transit1_cidr" {
   default = "10.90.0.0/16"
 }
 
+variable "gcp_spoke1_region" {
+  default = "asia-south1"
+}
+
+variable "gcp_spoke1_name" {
+  default = "gcp-mumbai-spoke"
+}
+
+variable "gcp_spoke1_cidr" {
+  default = "10.50.0.0/16"
+}
+
 variable "gcp_account_name" {
   default = "gcp"
 }
