@@ -50,15 +50,27 @@ variable "aws_spoke_instance_size" {
 }
 
 variable "aws_spoke1_region" {
-  default = "us-east-2"
+  default = "eu-west-2"
 }
 
 variable "aws_spoke1_name" {
-  default = "ace-iac-spoke1"
+  default = "aws-london-spoke"
 }
 
 variable "aws_spoke1_cidr" {
-  default = "10.1.211.0/24"
+  default = "10.2.0.0/16"
+}
+
+variable "aws_spoke2_region" {
+  default = "ap-southeast-2"
+}
+
+variable "aws_spoke2_name" {
+  default = "aws-sydney-spoke"
+}
+
+variable "aws_spoke2_cidr" {
+  default = "10.4.0.0/16"
 }
 
 variable "aws_test_instance_size" {
